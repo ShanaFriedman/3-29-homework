@@ -1,0 +1,41 @@
+﻿@using March_29_homework.Data
+@model HistoryViewModel
+
+<div class="header">
+    <h1>History for @Model.Contributor.FirstName @Model.Contributor.LastName</h1>
+    <h3>Current Balance: @Model.Contributor.Balance.ToString("C")</h3>
+</div>
+
+<div class="row header">
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Action</th>
+                    <th>Date</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+            <tbody> 
+                @foreach(Actions a in Model.Actions)
+                {
+                    <tr>
+                    <td>@(a.SimchaName != null ? $"Contribution for the {a.SimchaName} simcha" : "deposit")</td>
+                    
+                        <td style="text-align: center; vertical-align: middle;">
+                            @a.Date.ToLongDateString()
+                        </td>
+                        <td style="text-align: center; vertical-align: middle;">
+                            @(a.SimchaName != null ? $"-" : "")
+                            @a.Amount.ToString("C")
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div style="text-align:center;">
+    <a class="btn btn-lg btn-danger" href="/contributors">Back to Contributors</a>
+</div>
