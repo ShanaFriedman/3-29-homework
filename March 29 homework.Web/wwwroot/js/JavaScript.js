@@ -39,6 +39,27 @@
         new bootstrap.Modal($(".new-contrib")[0]).show();
     })
 
+    $("#search").on("input", function () {
+        let searchText = $("#search").val().toLowerCase()
+
+        $(".cont-row").each(function () {
+            let row = $(this)
+            let name = row.find("td:eq(1)").text().toLowerCase();
+            const indexOfWord = name.indexOf(searchText)
+
+            if (indexOfWord < 0) {
+                row.hide()
+            } else {
+                row.show()
+            }
+        })
+    })
+
+    $("#clear").on("click", function () {
+        $("#search").val("")
+        $(".cont-row").show()
+    })
+
     var myModalEl = document.getElementById('new-cont')
     myModalEl.addEventListener('hidden.bs.modal', function (event) {
         $("#contributor_first_name").val("")
@@ -48,5 +69,5 @@
         $("#contributor_always_include").prop("checked", false)
         $("#cont-id").remove()
     })
-    
+
 })

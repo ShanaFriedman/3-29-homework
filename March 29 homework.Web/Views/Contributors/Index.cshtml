@@ -41,7 +41,7 @@
         <tbody>
             @foreach(Contributor c in Model.Contributors)
             {
-                        <tr>
+                        <tr class="cont-row">
                             <td>
                                 <button class="btn btn-success deposit-button" data-contribid="@c.Id" data-contribname="@c.FirstName @c.LastName">Deposit</button>
                             </td>
